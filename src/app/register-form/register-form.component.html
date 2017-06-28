@@ -1,0 +1,67 @@
+
+<form (ngSubmit)="onSignUpSubmit()" #f="ngForm" >
+
+  <div class="row">
+    <div class="form-group">
+      <label for="name">Email</label>
+      <input id="emailaddress"
+             type="text"
+             required
+             name='email' 
+             [(ngModel)]="signUpUser.email"
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+             #email="ngModel"
+             class="form-control">
+      <!-- <div [hidden]="!errors.email" class="alert alert-danger">Email {{errors.email}}</div> -->
+      <div [hidden]="(email.valid || email.pristine) && !errors.email"
+         class="alert alert-danger">
+        <div [hidden]="!errors.email">Email {{errors.email}}</div>
+        <div [hidden]="!email.hasError('required')">Email is required</div>
+        <div [hidden]="!email.hasError('pattern')">Email invalid format </div>
+      </div>
+      
+    </div>
+
+    <div class="form-group">
+       <label for="name">Password</label>
+       <input type="password" class="form-control" id="password"
+       required
+       minlength="6"
+       [(ngModel)]="signUpUser.password" name="password"
+       #password="ngModel">
+       <div [hidden]="(password.valid || password.pristine) && !errors.password"
+          class="alert alert-danger">
+          <div [hidden]="!errors.password">Email {{errors.password}}</div>
+          <div [hidden]="!password.hasError('minlength')">Password must be at least 6 characters</div>
+          <div [hidden]="!password.hasError('required')">Password is required</div>
+       </div>
+    </div>
+
+    <div class="form-group">
+       <label for="name">Password confirmation</label>
+       <input type="password" class="form-control" id="confirmPassword"
+       required
+       validateEqual="password"
+       [(ngModel)]="signUpUser.passwordConfirmation" name="confirmPassword"
+       #confirmPassword="ngModel">
+       <div *ngIf="signUpUser.password != signUpUser.passwordConfirmation"
+          class="alert alert-danger">
+          Passwords did not match
+       </div>
+    </div>
+
+
+    <div class="col s12">
+
+      <button type="submit"
+              [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)"
+              class="waves-effect waves-light btn blue right">
+        Sign up
+      </button>
+
+    </div>
+
+  </div>
+
+
+</form>
