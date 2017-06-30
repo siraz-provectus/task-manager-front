@@ -1,5 +1,6 @@
 import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {Angular2TokenService} from "angular2-token";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-form',
@@ -22,7 +23,8 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() onFormResult = new EventEmitter<any>();
 
-  constructor(private tokenAuthSerivce:Angular2TokenService) { }
+  constructor(private tokenAuthSerivce:Angular2TokenService,
+              private router:Router) { }
 
   ngOnInit() {}
 
@@ -35,6 +37,7 @@ export class RegisterFormComponent implements OnInit {
 
           if (res.status == 200){
             this.onFormResult.emit({signedUp: true, res})
+            this.router.navigate(['users'])
           }
 
         },

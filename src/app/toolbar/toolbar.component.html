@@ -1,11 +1,11 @@
-<div class="navbar-fixed">
+<div class="nav-wrapper">
   <nav  role="navigation">
     <div class="nav-wrapper blue ">
       <a [routerLink]="['']" id="logo-container" class="brand-logo">TaskManager</a>
       <ul class="right hide-on-med-and-down">
-        <li *ngIf="!tokenAuthService.userSignedIn()"> <a (click)="presentAuthDialog()" >LOGIN</a></li>
-        <li *ngIf="!tokenAuthService.userSignedIn()"> <a (click)="presentAuthDialog('register')">REGISTER</a></li>
-        <li *ngIf="tokenAuthService.userSignedIn()"> <a (click)="tokenAuthService.signOut()" >LOGOUT</a></li>
+        <li *ngIf="!(authService.userSignedIn$ | async)"> <a (click)="presentAuthDialog()" >LOGIN</a></li>
+        <li *ngIf="!(authService.userSignedIn$ | async)"> <a (click)="presentAuthDialog('register')">REGISTER</a></li>
+        <li *ngIf="(authService.userSignedIn$ | async)"> <a (click)="logOut()" >LOGOUT</a></li>
       </ul>
     </div>
   </nav>
