@@ -9,3 +9,14 @@
 .form-group {
 	margin-bottom: 20px;
 }
+
+.collection .collection-item.task-item {
+	border: 1px solid #e0e0e0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 60px
+}
+
+.margin-top-10 {
+	margin-top: 10px;
+}

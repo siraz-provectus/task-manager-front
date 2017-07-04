@@ -8,8 +8,12 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
+import { TaskListComponent } from './task-list/task-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
+import { TaskFormComponent } from './task-form/task-form.component';
+import { CreateTaskFormComponent } from './task-form/create-task-form.component';
+import { EditTaskFormComponent } from './task-form/edit-task-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +25,10 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
     AppComponent,
     HomeComponent,
     UsersComponent,
+    TaskListComponent,
+    TaskFormComponent,
+    CreateTaskFormComponent,
+    EditTaskFormComponent,
     ToolbarComponent,
     AuthDialogComponent,
     LoginFormComponent,

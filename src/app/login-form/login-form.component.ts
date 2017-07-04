@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
         res => {
           if(res.status == 200){
             this.onFormResult.emit({signedIn: true, res});
-            this.router.navigate(['users'])
+            this.router.navigate(['tasks'])
           }
         },
 

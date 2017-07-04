@@ -1,0 +1,54 @@
+<div class="row margin-top-10">
+  <a (click)="presentTaskForm()" class="waves-effect waves-light btn blue right"> Create task </a>
+</div>
+<div class='row'>
+  <div class='row'>
+    <div class='col s4 collection new' [dragula]='"another-bag"' [dragulaModel]='many' container-status='new'>
+      <div *ngFor='let task of tasks'>
+        <ng-template [ngIf]="task.status == 'new'">
+          <div (click)="presentEditForm(task.id)" class="collection-item task-item" id="task_{{task.id}}">
+            <input type="hidden" name="task_id" value="{{task.id}}">
+            <div class="col s8">
+              <label>{{task.title}}</label>
+            </div>
+            <div class="col s4">
+              <span class="new badge red" data-badge-caption="">{{task.status}}</span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class='col s4 collection in-process' [dragula]='"another-bag"' [dragulaModel]='many' container-status='in_process'>
+      <div *ngFor='let task of tasks'>
+        <ng-template [ngIf]="task.status == 'in_process'">
+          <div (click)="presentEditForm(task.id)" class="collection-item task-item" id="task_{{task.id}}">
+            <input type="hidden" name="task_id" value="{{task.id}}">
+            <div class="col s8">
+              <label>{{task.title}}</label>
+            </div>
+            <div class="col s4">
+              <span class="new badge blue" data-badge-caption="">{{task.status}}</span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class='col s4 collection resolved' [dragula]='"another-bag"' [dragulaModel]='many' container-status='resolved'>
+      <div *ngFor='let task of tasks'>
+        <ng-template [ngIf]="task.status == 'resolved' || task.status == 'closed'">
+          <div (click)="presentEditForm(task.id)" class="collection-item task-item" id="task_{{task.id}}">
+            <input type="hidden" name="task_id" value="{{task.id}}">
+            <div class="col s8">
+              <label>{{task.title}}</label>
+            </div>
+            <div class="col s4">
+              <span class="new badge" data-badge-caption="">{{task.status}}</span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-task-form #taskForm (onHidden)="afterHidden($event)"></app-task-form>

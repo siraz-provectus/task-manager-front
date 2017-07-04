@@ -12,14 +12,20 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
   template:`
     <div class='row'>
       <div class='row'>
-        <div class='col s4' [dragula]='"another-bag"' [dragulaModel]='many'>
-          <div *ngFor='let user of users' [innerHtml]="user.email"></div>
+        <div class='col s4 collection new' [dragula]='"another-bag"' [dragulaModel]='many'>
+          <div class="collection-item task-item" *ngFor='let user of users'>
+            <span class="new badge">{{user.email}}</span>
+          </div>
         </div>
-        <div class='col s4' [dragula]='"another-bag"' [dragulaModel]='many'>
-          <div *ngFor='let user of users' [innerHtml]="user.email"></div>
+        <div class='col s4 collection in-process' [dragula]='"another-bag"' [dragulaModel]='many'>
+          <div class="collection-item task-item" *ngFor='let user of users'>
+            <span class="new badge blue">{{user.email}}</span>
+          </div>
         </div>
-        <div class='col s4' [dragula]='"another-bag"' [dragulaModel]='many'>
-          <div *ngFor='let user of users' [innerHtml]="user.email"></div>
+        <div class='col s4 collection resolved' [dragula]='"another-bag"' [dragulaModel]='many'>
+          <div class="collection-item task-item" *ngFor='let user of users'>
+            <span class="new badge red">{{user.email}}</span>
+          </div>
         </div>
       </div>
     </div>

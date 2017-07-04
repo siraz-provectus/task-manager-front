@@ -37,7 +37,7 @@ export class RegisterFormComponent implements OnInit {
 
           if (res.status == 200){
             this.onFormResult.emit({signedUp: true, res})
-            this.router.navigate(['users'])
+            this.router.navigate(['tasks'])
           }
 
         },

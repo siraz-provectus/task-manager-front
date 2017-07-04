@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.userSigned()) {
-      this.router.navigate(['users'])
+      this.router.navigate(['tasks'])
     } else {
       this.router.navigate(['/'])
     }
