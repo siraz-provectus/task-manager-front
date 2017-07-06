@@ -1,28 +1,39 @@
 <form (ngSubmit)="onCreateTaskSubmit()" #f="ngForm" >
 
   <div class="col s12">
-
-    <div class="form-group">
-      <label for="name">Title</label>
-      <input id="title"
-             type="text"
-             required
-             name='title' 
-             [(ngModel)]="task.title"
-             #title="ngModel"
-             class="form-control">
-      <div [hidden]="(title.valid || title.pristine)"
-         class="alert alert-danger">
-        <div [hidden]="!title.hasError('required')">Title is required</div>
+    <div class='col s6'>
+      <div class="form-group">
+        <label for="name">Title</label>
+        <input id="title"
+               type="text"
+               required
+               name='title' 
+               [(ngModel)]="task.title"
+               #title="ngModel"
+               class="form-control">
+        <div [hidden]="(title.valid || title.pristine)"
+           class="alert alert-danger">
+          <div [hidden]="!title.hasError('required')">Title is required</div>
+        </div>
+        
       </div>
-      
+
+      <div class="form-group">
+         <label for="name">Description</label>
+         <input type="text" class="form-control" id="description"
+         [(ngModel)]="task.description" name="description"
+         #description="ngModel">
+      </div>
     </div>
 
-    <div class="form-group">
-       <label for="name">Description</label>
-       <input type="text" class="form-control" id="description"
-       [(ngModel)]="task.description" name="description"
-       #description="ngModel">
+    <div class='col s6'>
+      <div class="form-group">
+        <label for="name">Assignee</label>
+        <select class="browser-default" [(ngModel)]="task.assigned_to" #status="ngModel" name='assigned_to' id="assigned_to">
+          <option *ngFor="let user of users" [selected]="task.assigned_to==user.id"
+          [ngValue]="user.id">{{user.email}}</option>
+        </select>
+      </div>
     </div>
 
     <div class="col s12 ">

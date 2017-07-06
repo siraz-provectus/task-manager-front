@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router} from "@angular/router";
 import { TaskFormComponent} from "../task-form/task-form.component";
+import {environment} from "../../environments/environment";
 import { AuthService } from "../services/auth.service";
 import { TaskService } from '../services/task.service';
 import { Task } from "../models/task";
@@ -26,6 +27,8 @@ export class TaskListComponent implements OnInit {
     dragulaService.drop.subscribe((value) => {
       this.onDrop(value.slice(1));
     });
+
+    console.log(environment.token_auth_config.apiBase)
   }
 
   logOut(){
@@ -45,6 +48,11 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.userSigned()) {
+      this.router.navigate(['tasks'])
+    } else {
+      this.router.navigate(['/'])
+    }
   }
 
   presentTaskForm(){
@@ -53,11 +61,21 @@ export class TaskListComponent implements OnInit {
   }
 
   presentEditForm(id) {
+    console.log(id)
     var task = this.tasks.find(x => x.id == id);
     this.taskForm.openDialog(task);
   }
 
-  afterHidden(e){
+  deleteTask(id) {
+    var task = this.tasks.find(x => x.id == id);
+    this._taskDataService.deleteTask(task).subscribe(
+          task => {
+            this.getTasks();
+          },
+          error => this.errorMessage = <any>error);
+  }
+
+  afterHidden(){
     this.getTasks();
   }
 

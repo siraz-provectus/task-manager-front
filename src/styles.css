@@ -2,7 +2,7 @@
   color: red;
 }
 
-#emailaddress, #password, #confirmPassword {
+#emailaddress, #password, #confirmPassword, .row.task-info {
   margin-bottom: 0px;
 }
 
@@ -14,9 +14,12 @@
 	border: 1px solid #e0e0e0;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	height: 60px
+	height: 80px
 }
 
 .margin-top-10 {
 	margin-top: 10px;
+}
+.delete-icon {
+	cursor: pointer
 }

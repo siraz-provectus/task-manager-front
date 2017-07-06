@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
@@ -24,7 +23,6 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
   declarations: [
     AppComponent,
     HomeComponent,
-    UsersComponent,
     TaskListComponent,
     TaskFormComponent,
     CreateTaskFormComponent,

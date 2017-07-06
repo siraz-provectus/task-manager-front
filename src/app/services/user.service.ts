@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import { environment } from "../../environments/environment";
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { AuthService } from "../services/auth.service";
@@ -11,12 +12,16 @@ export class UserService {
   }
 
   getData():Observable<User[]> {
-      return this.http.get('http://localhost:3000/users.json', { headers: this.authService.authHeaders()})
+      return this.http.get(environment.baseUrl + '/users.json', { headers: this.authService.authHeaders()})
           .map(this.extractData)
           .catch(this.handleError);
   }
 
   private extractData(res:Response) {
+      if(res.headers.get('access-token')) {
+        localStorage.setItem('accessToken', res.headers.get('access-token'));
+      }
+      
       let body = res.json();
       return body || [];
   }

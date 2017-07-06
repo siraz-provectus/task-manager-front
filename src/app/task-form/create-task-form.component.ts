@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { AuthService } from "../services/auth.service";
+import { Component, OnInit, Output, EventEmitter, Injector } from '@angular/core';
 import { TaskService } from '../services/task.service';
+import { TaskFormComponent} from "../task-form/task-form.component";
 import { Task } from "../models/task";
+import { User } from "../models/user";
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,11 +13,12 @@ import { Router } from "@angular/router";
 export class CreateTaskFormComponent implements OnInit {
 
   @Output() onFormCreateResult = new EventEmitter<any>();
-  constructor(public authService:AuthService,
-              private _taskDataService:TaskService,
-              private router:Router) { }
+  constructor(private _taskDataService:TaskService,
+              private router:Router,
+              private inj:Injector) { this.users = this.inj.get(TaskFormComponent).users }
 
-  task: Task = new Task();
+  private task: Task = new Task();
+  private users:User[] = [];
 
   ngOnInit() {}
 

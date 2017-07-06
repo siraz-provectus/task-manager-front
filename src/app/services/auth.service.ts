@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Angular2TokenService} from "angular2-token";
-import {Subject, Observable} from "rxjs";
-import {Response} from "@angular/http";
+import { Angular2TokenService } from "angular2-token";
+import { Subject, Observable } from "rxjs";
+import { Response, Headers } from "@angular/http";
 
 @Injectable()
 export class AuthService {
@@ -52,7 +52,24 @@ export class AuthService {
   }
 
   authHeaders() {
-    return this.authService.currentAuthHeaders
+    return this.getHeaders()
+  }
+
+  private getHeaders() {
+    var headers = new Headers();
+    var token = localStorage.getItem('accessToken');
+    var client = localStorage.getItem('client');
+    var expiry = localStorage.getItem('expiry');
+    var tokenType = localStorage.getItem('tokenType');
+    var uid = localStorage.getItem('uid');
+
+    headers.append('access-token', token);
+    headers.append('client', client);
+    headers.append('expiry', expiry);
+    headers.append('token-type', tokenType);
+    headers.append('uid', uid);
+
+    return headers;
   }
 
 }
